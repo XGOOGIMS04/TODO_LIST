@@ -54,6 +54,38 @@ input::placeholder {
     height: 520px;
     background-color: #afafaf;
     display: flex;
+    position: relative;
+}
+#modal-container {
+    width: 100%;
+    height: 620px; /* #contents 에서 #footer 처리해줄것 */
+    background-color: rgba(0, 0, 0, 0.17);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#modal-content {
+    width: 70%;
+    height: 100px;
+    background-color: yellowgreen;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* 자식 요소 세로 배치(텍스트 박스랑 버튼 박스 위아래로 나누려고 줌) */
+    justify-content: space-between; /* 양 끝으로 밀어서 공간 균등 나눔(column이니까 텍스트박스는 위로, 버튼박스는 아래로 밀려서 붙는것) */
+}
+#modal-text {
+    width: 70%;
+    height: 20px;
+    margin: auto; 
+}
+#modalBtn-box {
+    display: flex;
+    justify-content: flex-end; /* 자식 요소들을 오른쪽 끝으로 밀어줌 */
+}
+#modal-content button {
+    width: 20%;
 }
 #footer {
     width: 100%;
