@@ -65,6 +65,7 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
+    display: none; /* 오버레이와 모달창 잠시 가려둠 */
 }
 #modal-content {
     width: 70%;
@@ -83,9 +84,11 @@ input::placeholder {
 #modalBtn-box {
     display: flex;
     justify-content: flex-end; /* 자식 요소들을 오른쪽 끝으로 밀어줌 */
+    margin-right: 13px; /* 버튼박스 오른쪽 여백 */
 }
 #modal-content button {
-    width: 20%;
+    width: 15%;
+    margin: 0 1px 10px 10px; /* 버튼 상하좌우 여백 */
 }
 #footer {
     width: 100%;
