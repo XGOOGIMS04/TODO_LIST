@@ -35,16 +35,35 @@ addBtn.addEventListener("click", (event) => {
 let confirmBtn = document.querySelector("#confirm");
 let cancleBtn = document.querySelector("#cancle");
 let modalText = document.querySelector("#modal-text");
-let text_insert = document.createElement("p"); // p태그로 동적 요소 만들어줌
 let check_list = document.querySelector("#contents"); // 체크리스트 가져옴 -> 텍스트 넣어줘야함
 
-// 텍스트 입력하고 확인 누르면 체크리스트에 추가
+//----- 텍스트 입력하고 확인 누르면 체크리스트에 추가
 confirmBtn.addEventListener("click", (event) => {
-    text_insert.innerText = modalText.value; // 텍스트를 p태그에 넣어줌
-    check_list.appendChild(text_insert); // p태그의 텍스트를 체크리스트에 추가함
-    console.log(modalText.value); // 텍스트 확인
+
+    // 동적 생성
+    let addList = document.createElement("div"); // 체크박스와 텍스트 묶는 박스
+    addList.setAttribute("class", "addList");
+    let addCheckBox = document.createElement("input"); // 체크박스
+    addCheckBox.setAttribute("type", "checkbox"); // 체크박스 속성 값 설정
+    addCheckBox.setAttribute("class", "checkBox");
+    let addText = document.createElement("p"); // 텍스트
+    addText.setAttribute("class", "addText");
+
+    // 큰 div 안에 체크박스, 텍스트 추가
+    addList.appendChild(addCheckBox);
+    addList.appendChild(addText);
+    check_list.appendChild(addList);
+
+    addText.innerText = modalText.value; // 텍스트를 p태그 안에 넣어줌
+    console.log(modalText.value); // 텍스트 테스트용
 });
-// 취소 버튼 누르면 모달창 닫침
+
+// 확인 버튼 누르면 모달창 닫힘
+confirmBtn.addEventListener("click", (event) => {
+    modalScreen.style.display = "none";
+});
+
+//------- 취소 버튼 누르면 모달창 닫침
 cancleBtn.addEventListener("click", (event) => {
     modalScreen.style.display = "none";
 });
