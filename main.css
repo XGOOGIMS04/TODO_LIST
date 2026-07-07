@@ -1,40 +1,48 @@
 @charset "utf-8";
+@font-face {
+    font-family: 'OngleipSeunghun';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408@1.0/Ownglyph_Seung_Hoon-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
 
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'OngleipSeunghun', 'sans-serif', 'serif';
 }
 #wrap {
     width: 550px;
-    background-color: #d0d0d0;
     position: absolute; /* 중앙정렬 */
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    background-image: url(images/bgImage3.jpg);
+    background-size: cover;
+    border-radius: 10px;
 }
 #box {
     width: 85%;
     height: 800px;
-    background-color: #ccc;
     margin: 0 auto;
 }
 #header {
     width: 100%;
     height: 80px;
-    background-color: #d9d9d9;
     text-align: center; /* 텍스트 가로 중앙 정렬 */
     line-height: 80px; /* 텍스 세로 중앙 정렬  */
     font-size: 40px;
     font-weight: bold;
+    padding-top: 20px;
 }
 #article {
     width: 100%;
     height: 100px;
-    background-color: #c1c1c1;
     position: relative;
 }
 input::placeholder {
-    opacity: 0.3;
+    opacity: 0.5;
 }
 #article #text_box {
     width: 80%;
@@ -47,19 +55,20 @@ input::placeholder {
     font-weight: bold;
     text-align: center;
     border-radius: 14px;
-    border: 3mm ridge gray;
+    background-color: transparent; /* 배경색 투명하게 */
+    border: inset; /* 파인 느낌 */
 }
 #contents {
     width: 100%;
     height: 520px;
-    background-color: #afafaf;
     display: block; /* 체크리스트 새로정렬 */
     position: relative;
+    padding-top: 20px;
 }
 #modal-container {
     width: 100%;
-    height: 620px; /* #contents 에서 #footer 처리해줄것 */
-    background-color: rgba(0, 0, 0, 0.17);
+    height: 520px; /* #contents 에서 #footer 처리해줄것 */
+    background-color: rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 0;
     display: flex;
@@ -68,18 +77,23 @@ input::placeholder {
     display: none; /* 오버레이와 모달창 잠시 가려둠 */
 }
 #modal-content {
-    width: 70%;
-    height: 100px;
-    background-color: yellowgreen;
+    width: 90%;
+    height: 150px;
+    background-color: #f5f0e895;
+    border-radius: 20px;
     position: relative;
     display: flex;
     flex-direction: column; /* 자식 요소 세로 배치(텍스트 박스랑 버튼 박스 위아래로 나누려고 줌) */
     justify-content: space-between; /* 양 끝으로 밀어서 공간 균등 나눔(column이니까 텍스트박스는 위로, 버튼박스는 아래로 밀려서 붙는것) */
 }
 #modal-text {
-    width: 70%;
-    height: 20px;
+    width: 90%;
+    height: 40px;
     margin: auto; 
+    font-size: 20px;
+    background-color: transparent;
+    border: 3px inset;
+    border-radius: 15px;
 }
 #modalBtn-box {
     display: flex;
@@ -89,22 +103,31 @@ input::placeholder {
 #modal-content button {
     width: 15%;
     margin: 0 1px 10px 10px; /* 버튼 상하좌우 여백 */
+    font-size: 24px;
+    border: 3px inset;
+    border-radius: 15px;
 }
 .addList {
     display: flex;
     width: 100%;
-    height: 20px;
-    background-color: #eee;
+    height: 30px;
+    margin-top: 10px;
 }
 .checkBox {
-
+    width: 2em;
+    height: 2em;
+    margin: 0 15px 0 10px;
+    accent-color: rgba(128, 128, 128, 0.774); /* 체크박스가 체크될때 색상 지정 */
 }
 .addText {
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    top: -8px;
 }
 #footer {
     width: 100%;
     height: 100px;
-    background-color: #c1c1c1;
     display: flex; /* 버튼 중앙정렬 */
     justify-content: center;
     align-items: center;
@@ -116,4 +139,5 @@ input::placeholder {
     border-radius: 15px;
     font-size: 40px;
     font-weight: bold;
+    background-color: transparent; /* 배경색 투명하게 */
 }
