@@ -36,8 +36,9 @@ let confirmBtn = document.querySelector("#confirm");
 let cancleBtn = document.querySelector("#cancle");
 let modalText = document.querySelector("#modal-text");
 let check_list = document.querySelector("#contents"); // 체크리스트 가져옴 -> 텍스트 넣어줘야함
+let newItem = []; // 객체들을 담아줄 배열 선언(체크리스트 정보들 담는 곳)
 
-//----- 텍스트 입력하고 확인 누르면 체크리스트에 추가
+//----- 텍스트 입력하고 확인 누르면 체크리스트에 추가 + 객체 정보 저장
 confirmBtn.addEventListener("click", (event) => {
 
     // 동적 생성
@@ -55,8 +56,13 @@ confirmBtn.addEventListener("click", (event) => {
     check_list.appendChild(addList);
 
     addText.innerText = modalText.value; // 텍스트를 p태그 안에 넣어줌
+    newItem.push({ checked: addCheckBox.checked, text: modalText.value}); // 새 항목을 배열에 추가
+    localStorage.setItem("newItem_obj", JSON.stringify(newItem)); // 배열을 문자열로 변환해서 localStorage에 저장
+
     console.log(modalText.value); // 텍스트 테스트용
 });
+const list_obj = localStorage.getItem("newItem_obj"); // localStorage에서 저장된 체크리스트 문자열 가져옴
+const parseList_obj = JSON.parse(list_obj); // 문자열을 다시 배열로 변환 
 
 // 확인 버튼 누르면 모달창 닫힘
 confirmBtn.addEventListener("click", (event) => {
