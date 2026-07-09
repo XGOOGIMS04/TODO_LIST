@@ -41,14 +41,14 @@ let newItem = []; // 객체들을 담아줄 배열 선언(체크리스트 정보
 //----- 텍스트 입력하고 확인 누르면 체크리스트에 추가 + 객체 정보 저장
 confirmBtn.addEventListener("click", (event) => {
 
-    // 동적 생성
+    // 동적 생성(확인 눌렀을때 실시간으로 추가)
     let addList = document.createElement("div"); // 체크박스와 텍스트 묶는 박스
-    addList.setAttribute("class", "addList");
+    addList.setAttribute("class", "List");
     let addCheckBox = document.createElement("input"); // 체크박스
     addCheckBox.setAttribute("type", "checkbox"); // 체크박스 속성 값 설정
-    addCheckBox.setAttribute("class", "checkBox");
+    addCheckBox.setAttribute("class", "CheckBox");
     let addText = document.createElement("p"); // 텍스트
-    addText.setAttribute("class", "addText");
+    addText.setAttribute("class", "Text");
 
     // 큰 div 안에 체크박스, 텍스트 추가
     addList.appendChild(addCheckBox);
@@ -58,11 +58,28 @@ confirmBtn.addEventListener("click", (event) => {
     addText.innerText = modalText.value; // 텍스트를 p태그 안에 넣어줌
     newItem.push({ checked: addCheckBox.checked, text: modalText.value}); // 새 항목을 배열에 추가
     localStorage.setItem("newItem_obj", JSON.stringify(newItem)); // 배열을 문자열로 변환해서 localStorage에 저장
-
-    console.log(modalText.value); // 텍스트 테스트용
 });
-const list_obj = localStorage.getItem("newItem_obj"); // localStorage에서 저장된 체크리스트 문자열 가져옴
-const parseList_obj = JSON.parse(list_obj); // 문자열을 다시 배열로 변환 
+let list_obj = localStorage.getItem("newItem_obj"); // localStorage에서 저장된 체크리스트 문자열 가져옴
+newItem = JSON.parse(list_obj) || []; // 문자열을 다시 배열로 변환하여 변수 재할당. 이때 처음 실행시 null이 아닌 빈 배열을 넣어줘야함. 왜냐? Parse 랑 null이 만나면 오류가 생기기 때문 
+
+for(i = 0; i < newItem.length; i++){ // 새로고침 후 localStrage에 불러와서 다시 그림. for문으로 하나씩 newItem에서 꺼내옴
+    let reList = document.createElement("div");
+    reList.setAttribute("class", "List");
+    let reCheckBox = document.createElement("input");
+    reCheckBox.setAttribute("type", "checkbox");
+    reCheckBox.setAttribute("class", "CheckBox");
+    let reText = document.createElement("p");
+    reText.setAttribute("class", "Text");
+
+    // 큰 div안에 체크박스, 텍스트 추가
+    reList.appendChild(reCheckBox);
+    reList.appendChild(reText);
+    check_list.appendChild(reList);
+
+    // 반복문으로 텍스트와 체크여부를 다시 화면에 그림
+    reText.innerHTML = newItem[i].text;
+    reCheckBox.checked = newItem[i].checked;
+}
 
 // 확인 버튼 누르면 모달창 닫힘
 confirmBtn.addEventListener("click", (event) => {
@@ -73,3 +90,6 @@ confirmBtn.addEventListener("click", (event) => {
 cancleBtn.addEventListener("click", (event) => {
     modalScreen.style.display = "none";
 });
+
+
+

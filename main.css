@@ -107,19 +107,19 @@ input::placeholder {
     border: 3px inset;
     border-radius: 15px;
 }
-.addList {
+.List {
     display: flex;
     width: 100%;
     height: 30px;
     margin-top: 10px;
 }
-.checkBox {
+.CheckBox {
     width: 2em;
     height: 2em;
     margin: 0 15px 0 10px;
     accent-color: rgba(128, 128, 128, 0.774); /* 체크박스가 체크될때 색상 지정 */
 }
-.addText {
+.Text {
     font-size: 2rem;
     font-weight: bold;
     position: relative;
