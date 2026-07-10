@@ -40,13 +40,20 @@ let newItem = []; // 객체들을 담아줄 배열 선언(체크리스트 정보
 
 //----- 텍스트 입력하고 확인 누르면 체크리스트에 추가 + 객체 정보 저장
 confirmBtn.addEventListener("click", (event) => {
-
     // 동적 생성(확인 눌렀을때 실시간으로 추가)
     let addList = document.createElement("div"); // 체크박스와 텍스트 묶는 박스
     addList.setAttribute("class", "List");
     let addCheckBox = document.createElement("input"); // 체크박스
     addCheckBox.setAttribute("type", "checkbox"); // 체크박스 속성 값 설정
     addCheckBox.setAttribute("class", "CheckBox");
+    newItem.push({ checked: addCheckBox.checked, text: modalText.value }); // 새 항목을 배열에 추가
+
+    addCheckBox.addEventListener("change", function () {
+        let onChecked = Number(addCheckBox.getAttribute("data-index")); // 클릭된 체크박스의 인덱스 번호를 가져와서 변수에 담음
+        newItem[onChecked].checked = addCheckBox.checked; // newItem 배열에서 그 번호에 해당하는 항목의 checked를 현재 체크박스 실제 상태로 업데이트함
+        localStorage.setItem("newItem_obj", JSON.stringify(newItem)); // 체크상태 변경시 localStorage 업데이트
+    });
+
     let addText = document.createElement("p"); // 텍스트
     addText.setAttribute("class", "Text");
 
@@ -56,7 +63,7 @@ confirmBtn.addEventListener("click", (event) => {
     check_list.appendChild(addList);
 
     addText.innerText = modalText.value; // 텍스트를 p태그 안에 넣어줌
-    newItem.push({ checked: addCheckBox.checked, text: modalText.value}); // 새 항목을 배열에 추가
+    addCheckBox.setAttribute("data-index", newItem.length - 1); // 체크박스 번호 부여.
     localStorage.setItem("newItem_obj", JSON.stringify(newItem)); // 배열을 문자열로 변환해서 localStorage에 저장
 });
 let list_obj = localStorage.getItem("newItem_obj"); // localStorage에서 저장된 체크리스트 문자열 가져옴
@@ -90,6 +97,3 @@ confirmBtn.addEventListener("click", (event) => {
 cancleBtn.addEventListener("click", (event) => {
     modalScreen.style.display = "none";
 });
-
-
-
