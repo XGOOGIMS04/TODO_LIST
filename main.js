@@ -112,4 +112,7 @@ let clear_btn = document.querySelector("#clear_btn");
 clear_btn.addEventListener("click", function(){
     text.value = ""; // 동기부여 메시지 삭제
     check_list.innerHTML = ""; // 체크리스트 내용 삭제
+    localStorage.clear(); // localStorage에 저장된 내용 비우기
+    newItem = []; // 저장된 배열 데이터 newItem 비우기
+    console.log(newItem); // clear 버튼 누르고 배열 데이터 확인
 })
